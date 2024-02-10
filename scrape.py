@@ -43,21 +43,21 @@ class Scraper():
             
                 
     @classmethod
-    def process(self, coin_url, start_date=dt.now() - timedelta(365)):
+    def get_historical_data(self, coin_url, start_date=dt.now() - timedelta(365)):
         coin = coin_url.split("/")[-2].upper()
         print(start_date)
         url = currency_list_url + coin_url + "historical-data"
         options = Options()
         options.add_argument('--headless')
-        options.add_argument('--window-size=1200,1100')
         browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        browser.set_window_size(1440, 900)
         browser.get(url)
+        WebDriverWait(browser, 3).until(
+            EC.presence_of_element_located((By.TAG_NAME, 'body'))
+        )
+        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         while True:
             try:
-                WebDriverWait(browser, 3).until(
-                    EC.presence_of_element_located((By.TAG_NAME, 'body'))
-                )
-                browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 xpath_expression = "//button[contains(@class, 'sc-2861d03b-0') and text()='Load More']"
                 load_more_button = WebDriverWait(browser, 1).until(
                     EC.visibility_of_element_located((By.XPATH, xpath_expression))
@@ -115,7 +115,7 @@ class Scraper():
         f = open(f'{crypto}_1d.csv', 'w')
         with f:
             writer = csv.writer(f, quoting=csv.QUOTE_NONE, escapechar='\\')
-            writer.writerow(['Date', "Coin", 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])
+            writer.writerow(['Date', 'Coin', 'Open', 'High', 'Low', 'Close', 'Volume', 'MarketCap'])
 
             for row in data:
                 writer.writerow(row)
