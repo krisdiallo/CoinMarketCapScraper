@@ -27,7 +27,7 @@ def main(pages, start_date):
         
         
     #test individual coin by name
-    # coin = "/currencies/chainlink/"
+    # coin = "/currencies/FIRST-DIGITAL-USD/"
     # data = scraper.get_historical_data(coin, start_date)
     # scraper.write_to_csv(data, coin.split("/")[-2].upper())
         

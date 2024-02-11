@@ -45,7 +45,7 @@ class Scraper():
     @classmethod
     def get_historical_data(self, coin_url, start_date=dt.now() - timedelta(365)):
         coin = coin_url.split("/")[-2].upper()
-        print(start_date)
+        print(f"starting execution of {coin}")
         url = currency_list_url + coin_url + "historical-data"
         options = Options()
         options.add_argument('--headless')
@@ -55,13 +55,15 @@ class Scraper():
         WebDriverWait(browser, 3).until(
             EC.presence_of_element_located((By.TAG_NAME, 'body'))
         )
-        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)    
         while True:
             try:
+                browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 xpath_expression = "//button[contains(@class, 'sc-2861d03b-0') and text()='Load More']"
                 load_more_button = WebDriverWait(browser, 1).until(
                     EC.visibility_of_element_located((By.XPATH, xpath_expression))
                 )
+                browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 if load_more_button.is_displayed():
                     load_more_button.click()
                 else:
@@ -75,7 +77,6 @@ class Scraper():
                 last_date = last_row.findChildren('td')[0].string
 
                 if dt.strptime(last_date, "%b %d, %Y") <= start_date:
-                    print(f"{last_date} is earlier than {start_date}")
                     break
 
             except EC.NoSuchElementException:
