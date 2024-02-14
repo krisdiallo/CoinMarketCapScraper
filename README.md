@@ -25,8 +25,12 @@ This code has been only tested on ubuntu 16.04
 ## Deployment
 This code can be either excuted using a python IDE or by running the following command in the terminal:
 ```
-python3 main.py
+python3 main.py [pages] [start_date]
 ```
+`pages` is the arg for how many pages of crypto from coinmarketcap.com to capture (increments of 100 cryptos)
+`start_date` is the arg for how far back you want the historical data for a the cryptos captured (the historical data will go slightly further back than start date)
+
+
 ## Screenshots
 ![](screenshot.png)
 
