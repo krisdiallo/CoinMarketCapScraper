@@ -11,10 +11,10 @@ from datetime import datetime as dt
 
 def validate_date_arg(date_arg):
     try:
-        date = dt.strptime(date_arg, "%Y-%d-%m")
+        date = dt.strptime(date_arg, "%Y-%m-%d")
         return date
     except:
-        raise ValueError("Date must be of format YYYY-DD-MM")
+        raise ValueError("Date must be of format YYYY-MM-DD")
 
 def main(pages, start_date):
     print(pages, start_date)
