@@ -18,6 +18,11 @@ sudo pip install beautifulsoup4
 ```
 sudo pip install requests
 ```
+* [selenium](https://pypi.org/project/selenium/) module
+```
+sudo pip install selenium
+```
+
 
 ## Tests
 This code has been only tested on ubuntu 16.04
