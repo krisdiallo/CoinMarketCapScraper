@@ -6,10 +6,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 In order to excute this code you will need the following python 3 packages:
-* [tkinter](https://docs.python.org/3/library/tkinter.html) module
-```
-sudo apt-get install python3-tk
-```
 * [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) module
 ```
 sudo pip install beautifulsoup4
@@ -23,27 +19,18 @@ sudo pip install requests
 sudo pip install selenium
 ```
 
-
-## Tests
-This code has been only tested on ubuntu 16.04
-
-## Deployment
+## Running
 This code can be either excuted using a python IDE or by running the following command in the terminal:
 ```
 python3 main.py [pages] [start_date]
 ```
 `pages` is the arg for how many pages of crypto from coinmarketcap.com to capture (increments of 100 cryptos)
-`start_date` is the arg for how far back you want the historical data for a the cryptos captured (the historical data will go slightly further back than start date)
 
+`start_date` is the arg for how far back you want the historical data for a the cryptos captured in `(YYYY-MM-DD)` format (the historical data will go slightly further back than start date)
 
-## Screenshots
-![](screenshot.png)
-
-## Built With
-* [Spyder3](http://pythonhosted.org/spyder/)
 
 ## Contributing
-If you have any improvement's suggestions, please contact me.
+If you have any improvement suggestions, please contact me.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
